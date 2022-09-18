@@ -1,4 +1,20 @@
 <div class="list-group w-auto">
+  <div class="progress">
+    <div
+      class="progress-bar"
+      role="progressbar"
+      aria-label="Basic example"
+      aria-valuenow="0"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [ngStyle]="{ width: (items | percentDone | number: '1.0-0') + '%' }"
+    ></div>
+  </div>
+
+  <p class="text-start">
+    Showing {{ items.length }} Todos.
+    {{ items | percentDone | number: '1.0-0' }} % done.
+  </p>
   <label
     class="list-group-item d-flex gap-3"
     [ngClass]="{ 'bg-light': item.done }"
@@ -13,7 +29,10 @@
       style="font-size: 1.375em"
     />
     <span class="pt-1 form-checked-content">
-      <strong>{{ item.value }}</strong>
+      <strong
+        [ngStyle]="{ 'text-decoration': item.done ? 'line-through' : 'none' }"
+        >{{ item.value }}</strong
+      >
       <small class="d-block text-muted"
         >{{ item.created | date: 'medium' }}
         <button type="button" class="btn btn-link" (click)="deleteTodo(item)">
