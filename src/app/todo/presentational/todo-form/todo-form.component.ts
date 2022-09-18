@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 interface TodoForm {
@@ -11,6 +11,7 @@ interface TodoForm {
   styleUrls: ['./todo-form.component.css'],
 })
 export class TodoFormComponent implements OnInit {
+  @Input() loading = false;
   @Output() todoAdded = new EventEmitter<string>();
 
   form: FormGroup<TodoForm> = null;

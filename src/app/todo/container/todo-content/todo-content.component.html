@@ -1,4 +1,7 @@
-<app-todo-form (todoAdded)="addTodo($event)"></app-todo-form>
+<app-todo-form
+  (todoAdded)="addTodo($event)"
+  [loading]="loading"
+></app-todo-form>
 <hr />
 <app-todo-list
   [items]="items"
