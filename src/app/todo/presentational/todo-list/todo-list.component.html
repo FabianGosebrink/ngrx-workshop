@@ -1,1 +1,22 @@
-<p>todo-list works!</p>
+<div class="list-group w-auto">
+  <label
+    class="list-group-item d-flex gap-3"
+    [ngClass]="{ 'bg-light': item.done }"
+    *ngFor="let item of items"
+  >
+    <input
+      class="form-check-input flex-shrink-0"
+      type="checkbox"
+      value=""
+      [checked]="item.done"
+      (change)="markDone(item, $event)"
+      style="font-size: 1.375em"
+    />
+    <span class="pt-1 form-checked-content">
+      <strong>{{ item.value }}</strong>
+      <small class="d-block text-muted">{{
+        item.created | date: 'medium'
+      }}</small>
+    </span>
+  </label>
+</div>

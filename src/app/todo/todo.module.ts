@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { TodoContentComponent } from './container/todo-content/todo-content.component';
+import { TodoFormComponent } from './presentational/todo-form/todo-form.component';
 import { TodoListComponent } from './presentational/todo-list/todo-list.component';
 
 const routes: Routes = [{ path: '', component: TodoContentComponent }];
 
 @NgModule({
-  declarations: [TodoContentComponent, TodoListComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  declarations: [TodoContentComponent, TodoListComponent, TodoFormComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule],
 })
 export class TodoModule {}

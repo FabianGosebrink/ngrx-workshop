@@ -1,0 +1,15 @@
+<form (ngSubmit)="addTodo()" [formGroup]="form">
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <input
+        type="text"
+        class="form-control"
+        id="inputTodo"
+        formControlName="todoText"
+        placeholder="Washing car..."
+      />
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Todo</button>
+</form>
