@@ -26,4 +26,8 @@ export class TodoService {
   updateItem(value: Todo) {
     return this.http.put<Todo>(`${this.url}/${value.id}`, value);
   }
+
+  deleteItem(value: Todo) {
+    return this.http.delete(`${this.url}/${value.id}`);
+  }
 }

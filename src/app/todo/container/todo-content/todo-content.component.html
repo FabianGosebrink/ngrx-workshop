@@ -3,4 +3,5 @@
 <app-todo-list
   [items]="items"
   (markAsDone)="markAsDone($event)"
+  (delete)="deleteTodo($event)"
 ></app-todo-list>

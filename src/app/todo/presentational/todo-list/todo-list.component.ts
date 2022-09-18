@@ -16,7 +16,8 @@ import { Todo } from '../../models/todo';
 })
 export class TodoListComponent implements OnInit, OnChanges {
   @Input() items: Todo[] = [];
-  @Output() markAsDone = new EventEmitter();
+  @Output() markAsDone = new EventEmitter<Todo>();
+  @Output() delete = new EventEmitter<Todo>();
 
   constructor() {}
 
@@ -33,5 +34,11 @@ export class TodoListComponent implements OnInit, OnChanges {
     const copy = { ...item };
     copy.done = checkBox.checked;
     this.markAsDone.emit(copy);
+  }
+
+  deleteTodo(item: Todo) {
+    if (item) {
+      this.delete.emit(item);
+    }
   }
 }

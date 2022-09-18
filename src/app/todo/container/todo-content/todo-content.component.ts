@@ -24,6 +24,10 @@ export class TodoContentComponent implements OnInit {
     this.service.updateItem(item).subscribe(() => this.getData());
   }
 
+  deleteTodo(item: Todo) {
+    this.service.deleteItem(item).subscribe(() => this.getData());
+  }
+
   private getData() {
     this.service.getItems().subscribe((items) => {
       this.items = items;

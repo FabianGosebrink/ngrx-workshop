@@ -14,9 +14,12 @@
     />
     <span class="pt-1 form-checked-content">
       <strong>{{ item.value }}</strong>
-      <small class="d-block text-muted">{{
-        item.created | date: 'medium'
-      }}</small>
+      <small class="d-block text-muted"
+        >{{ item.created | date: 'medium' }}
+        <button type="button" class="btn btn-link" (click)="deleteTodo(item)">
+          Delete
+        </button>
+      </small>
     </span>
   </label>
 </div>
