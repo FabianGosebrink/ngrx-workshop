@@ -15,10 +15,6 @@ export class TodoService {
     return this.http.get<Todo[]>(this.url);
   }
 
-  getItem(id: string) {
-    return this.http.get<Todo>(`${this.url}/${id}`);
-  }
-
   addItem(value: string) {
     return this.http.post<Todo>(this.url, { value });
   }
