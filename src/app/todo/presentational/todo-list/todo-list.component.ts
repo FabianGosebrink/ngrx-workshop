@@ -37,7 +37,7 @@ export class TodoListComponent implements OnInit, OnChanges {
   }
 
   deleteTodo(item: Todo) {
-    if (item) {
+    if (item && confirm('Really delete?')) {
       this.delete.emit(item);
     }
   }
