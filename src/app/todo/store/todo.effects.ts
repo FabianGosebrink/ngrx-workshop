@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs';
+import { concatMap, map, switchMap } from 'rxjs';
 import { TodoService } from '../services/todo.service';
 import * as todoActions from './todo.actions';
 
@@ -41,6 +41,17 @@ export class TodoEffects {
         this.todoService
           .updateItem(payload)
           .pipe(map((todo) => todoActions.setAsDoneFinished({ payload: todo })))
+      )
+    )
+  );
+
+  deleteTodo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(todoActions.deleteTodo),
+      concatMap(({ payload }) =>
+        this.todoService
+          .deleteItem(payload)
+          .pipe(map((todo) => todoActions.deleteTodoFinished({ payload })))
       )
     )
   );

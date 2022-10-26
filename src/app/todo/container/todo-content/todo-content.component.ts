@@ -33,7 +33,6 @@ export class TodoContentComponent implements OnInit {
   }
 
   deleteTodo(item: Todo) {
-    // this.loading = true;
-    // this.service.deleteItem(item).subscribe(() => this.getData());
+    this.store.dispatch(todoActions.deleteTodo({ payload: item.id }));
   }
 }

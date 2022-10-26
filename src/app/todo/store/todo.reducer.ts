@@ -21,12 +21,18 @@ export const initialState: ReducerTodoState = {
 export const todoReducer = createReducer(
   initialState,
 
-  on(todoActions.loadAllTodos, todoActions.addTodo, (state) => {
-    return {
-      ...state,
-      loading: true,
-    };
-  }),
+  on(
+    todoActions.loadAllTodos,
+    todoActions.addTodo,
+    todoActions.setAsDone,
+    todoActions.deleteTodo,
+    (state) => {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+  ),
 
   on(todoActions.loadAllTodosFinished, (state, { payload }) => ({
     ...state,
@@ -39,6 +45,27 @@ export const todoReducer = createReducer(
       ...state,
       loading: false,
       items: [...state.items, payload],
+    };
+  }),
+
+  on(todoActions.setAsDoneFinished, (state, { payload }) => {
+    const index = state.items.findIndex((x) => x.id === payload.id);
+    const itemsClone = [...state.items];
+    itemsClone[index] = payload;
+    return {
+      ...state,
+      items: itemsClone,
+      loading: false,
+    };
+  }),
+
+  on(todoActions.deleteTodoFinished, (state, { payload }) => {
+    const items = state.items.filter((x) => x.id !== payload);
+
+    return {
+      ...state,
+      loading: false,
+      items: [...items],
     };
   })
 );

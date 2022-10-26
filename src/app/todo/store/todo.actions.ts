@@ -27,3 +27,13 @@ export const setAsDoneFinished = createAction(
   '[Todo] SetAsDone Finished',
   props<{ payload: Todo }>()
 );
+
+export const deleteTodo = createAction(
+  '[Todo] Delete Todo',
+  props<{ payload: string }>()
+);
+
+export const deleteTodoFinished = createAction(
+  '[Todo] Delete Todo Finished',
+  props<{ payload: string }>()
+);
