@@ -1,10 +1,10 @@
 <app-todo-form
   (todoAdded)="addTodo($event)"
-  [loading]="loading"
+  [loading]="loading$ | async"
 ></app-todo-form>
 <hr />
 <app-todo-list
-  [items]="items"
+  [items]="items$ | async"
   (markAsDone)="markAsDone($event)"
   (delete)="deleteTodo($event)"
 ></app-todo-list>

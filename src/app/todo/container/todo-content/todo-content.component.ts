@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Todo } from '../../models/todo';
-import { TodoService } from '../../services/todo.service';
+import * as todoActions from '../../store/todo.actions';
+import { getAllItems, getLoading } from '../../store/todo.selectors';
 
 @Component({
   selector: 'app-todo-content',
@@ -9,41 +11,29 @@ import { TodoService } from '../../services/todo.service';
   styleUrls: ['./todo-content.component.css'],
 })
 export class TodoContentComponent implements OnInit {
-  items: Todo[];
+  items$: Observable<Todo[]>;
 
-  loading = false;
+  loading$: Observable<boolean>;
 
-  constructor(private service: TodoService) {}
+  constructor(private store: Store) {}
 
-  ngOnInit(): void {
-    this.getData();
+  ngOnInit() {
+    this.items$ = this.store.pipe(select(getAllItems));
+    this.loading$ = this.store.pipe(select(getLoading));
+
+    this.store.dispatch(todoActions.loadAllTodos());
   }
 
   addTodo(item: string) {
-    this.loading = true;
-    this.service.addItem(item).subscribe(() => this.getData());
+    this.store.dispatch(todoActions.addTodo({ payload: item }));
   }
 
   markAsDone(item: Todo) {
-    this.loading = true;
-    this.service.updateItem(item).subscribe(() => this.getData());
+    this.store.dispatch(todoActions.setAsDone({ payload: item }));
   }
 
   deleteTodo(item: Todo) {
-    this.loading = true;
-    this.service.deleteItem(item).subscribe(() => this.getData());
-  }
-
-  private getData() {
-    this.service
-      .getItems()
-      .pipe(
-        finalize(() => {
-          this.loading = false;
-        })
-      )
-      .subscribe((items) => {
-        this.items = items;
-      });
+    // this.loading = true;
+    // this.service.deleteItem(item).subscribe(() => this.getData());
   }
 }
