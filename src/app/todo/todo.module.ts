@@ -9,7 +9,8 @@ import { TodoFormComponent } from './presentational/todo-form/todo-form.componen
 import { PercentDonePipe } from './presentational/todo-list/percent-done.pipe';
 import { TodoListComponent } from './presentational/todo-list/todo-list.component';
 import { TodoEffects } from './store/todo.effects';
-import { featureName, todoReducer } from './store/todo.reducer';
+import { todoReducer } from './store/todo.reducer';
+import { featureName } from './store/todo.state';
 
 const routes: Routes = [{ path: '', component: TodoContentComponent }];
 

@@ -12,7 +12,6 @@ import { getAllItems, getLoading } from '../../store/todo.selectors';
 })
 export class TodoContentComponent implements OnInit {
   items$: Observable<Todo[]>;
-
   loading$: Observable<boolean>;
 
   constructor(private store: Store) {}
