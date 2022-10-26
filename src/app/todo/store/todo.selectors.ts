@@ -1,17 +1,17 @@
 import { createSelector } from '@ngrx/store';
-import * as fromTodoReducer from './todo.reducer';
+import { getTodoState, ReducerTodoState } from './todo.state';
 
 export const getAllItems = createSelector(
-  fromTodoReducer.getTodoState,
-  (state: fromTodoReducer.ReducerTodoState) => state.items
+  getTodoState,
+  (state: ReducerTodoState) => state.items
 );
 
 export const getLoading = createSelector(
-  fromTodoReducer.getTodoState,
-  (state: fromTodoReducer.ReducerTodoState) => state.loading
+  getTodoState,
+  (state: ReducerTodoState) => state.loading
 );
 
 export const getSelectedItem = createSelector(
-  fromTodoReducer.getTodoState,
-  (state: fromTodoReducer.ReducerTodoState) => state.selectedItem
+  getTodoState,
+  (state: ReducerTodoState) => state.selectedItem
 );

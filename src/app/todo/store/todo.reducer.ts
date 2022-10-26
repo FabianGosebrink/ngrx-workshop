@@ -1,22 +1,6 @@
-import { createFeatureSelector, createReducer, on } from '@ngrx/store';
-import { Todo } from '../models/todo';
+import { createReducer, on } from '@ngrx/store';
 import * as todoActions from './todo.actions';
-
-export const featureName = 'todo';
-
-export const getTodoState = createFeatureSelector(featureName);
-
-export interface ReducerTodoState {
-  items: Todo[];
-  selectedItem: Todo;
-  loading: boolean;
-}
-
-export const initialState: ReducerTodoState = {
-  items: [],
-  selectedItem: null,
-  loading: false,
-};
+import { initialState } from './todo.state';
 
 export const todoReducer = createReducer(
   initialState,
